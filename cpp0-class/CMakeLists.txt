@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
-project(class)
+project(cpp0-class)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(include)
-
-add_executable(class
-        include/Box.h
-        src/main.cpp src/Box.cpp include/Container.h include/BoxAddingException.h src/Container.cpp include/MyNamespace.h src/MyNamespace.cpp)
+add_executable(cpp0-class include/Box.h include/Container.h include/BoxAddingException.h include/MyNamespace.h src/Box.cpp src/Container.cpp src/MyNamespace.cpp src/main.cpp)
