@@ -268,6 +268,36 @@ bool BSTree::isBinarySearchTree() {
   return isBSTRec(root_);
 }
 
-void BSTree::printByLevels() {
-  printByLevelsRec(root_, 4);
+void printTreeByLevels(Node* root) {
+  if (root == nullptr)
+    return;
+
+  std::queue<Node*> levelQueue;
+  levelQueue.push(root);
+
+  while (!levelQueue.empty()) {
+    int levelSize = levelQueue.size();
+
+    for (int i = 0; i < levelSize; i++) {
+      Node* current = levelQueue.front();
+      levelQueue.pop();
+
+      std::cout << current->data_ << " ";
+
+      if (current->left_)
+        levelQueue.push(current->left_);
+      if (current->right_)
+        levelQueue.push(current->right_);
+    }
+
+    std::cout << std::endl;
+  }
 }
+
+void BSTree::printByLevels(bool rotate) {
+  if (rotate) {
+    printByLevelsRec(root_, 4);
+  } else {
+    printTreeByLevels(root_);
+  }
+  }

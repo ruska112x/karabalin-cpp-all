@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 
 struct Node {
   Node(const int& data = int(), Node* left = nullptr, Node* right = nullptr)
@@ -100,7 +101,7 @@ class BSTree {
   /* вывод дерева в поток по уровням
    * можно задать разворот на 90 градусов
    */
-  void printByLevels();
+  void printByLevels(bool);
 
  private:
   Node* root_;
