@@ -1,5 +1,5 @@
-#ifndef CPP5_BSTREE_H
-#define CPP5_BSTREE_H
+#ifndef CPP5_BTREE_H
+#define CPP5_BTREE_H
 
 #include <iostream>
 #include <queue>
@@ -29,7 +29,7 @@ struct Node {
   Node* right_;
 };
 
-class BSTree {
+class BTree {
   void clearElements(Node*);
   Node* copyTree(const Node*);
   int getEvenCountRec(const Node*);
@@ -43,25 +43,25 @@ class BSTree {
 
  public:
   // конструктор по умолчанию
-  BSTree();
+  BTree();
 
   // конструктор копирования
-  BSTree(const BSTree&);
+  BTree(const BTree&);
 
   // оператор копирования
-  BSTree& operator=(const BSTree&);
+  BTree& operator=(const BTree&);
 
   // конструктор перемещения
-  BSTree(BSTree&&);
+  BTree(BTree&&);
 
   // оператор перемещения
-  BSTree& operator=(BSTree&&);
+  BTree& operator=(BTree&&);
 
   // деструктор
-  ~BSTree();
+  ~BTree();
 
   // оператор вывода
-  friend std::ostream& operator<<(std::ostream&, const BSTree&);
+  friend std::ostream& operator<<(std::ostream&, const BTree&);
 
   /* вствавка элемента в дерево
    * 1-й аргумент - число, которое нужно вставить
@@ -104,4 +104,4 @@ class BSTree {
   Node* root_;
 };
 
-#endif  //CPP5_BSTREE_H
+#endif  //CPP5_BTREE_H

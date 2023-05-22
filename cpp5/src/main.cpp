@@ -1,6 +1,6 @@
 #include <iostream>
 #include <map>
-#include "../include/BSTree.h"
+#include "../include/BTree.h"
 
 std::ostream& operator<<(std::ostream& os, const std::vector<int>& v) {
   if (v.empty()) {
@@ -13,8 +13,8 @@ std::ostream& operator<<(std::ostream& os, const std::vector<int>& v) {
   return os;
 }
 
-void emptyBSTreeTest() {
-  BSTree tree;
+void emptyBTreeTest() {
+  BTree tree;
   std::cout << tree << "\n";
   std::cout << tree.findElement(0) << "\n";
   tree.deleteLeaves();
@@ -25,8 +25,8 @@ void emptyBSTreeTest() {
   std::cout << tree.isEmpty() << "\n";
 }
 
-void filledBSTreeTest0() {
-  BSTree tree;
+void filledBTreeTest0() {
+  BTree tree;
   auto* v = new std::vector<int>;
   tree.addElement(50, *v);
   v->push_back(0);
@@ -62,8 +62,8 @@ void filledBSTreeTest0() {
   delete v;
 }
 
-void filledBSTreeTest1() {
-  BSTree tree;
+void filledBTreeTest1() {
+  BTree tree;
   auto* v = new std::vector<int>;
   tree.addElement(0, *v);
   v->push_back(0);
@@ -109,11 +109,11 @@ void filledBSTreeTest1() {
 }
 
 int main() {
-  emptyBSTreeTest();
+  emptyBTreeTest();
   std::cout << "================\n";
-  filledBSTreeTest0();
+  filledBTreeTest0();
   std::cout << "================\n";
-  filledBSTreeTest1();
+  filledBTreeTest1();
   std::cout << "================\n";
   return 0;
 }

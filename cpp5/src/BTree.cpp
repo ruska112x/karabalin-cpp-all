@@ -1,9 +1,9 @@
-#include "../include/BSTree.h"
+#include "../include/BTree.h"
 #include <algorithm>
 #include <iostream>
 #include <utility>
 
-void BSTree::clearElements(Node* root) {
+void BTree::clearElements(Node* root) {
   if (!root) {
     return;
   }
@@ -12,7 +12,7 @@ void BSTree::clearElements(Node* root) {
   delete root;
 }
 
-std::ostream& operator<<(std::ostream& os, const BSTree& tree) {
+std::ostream& operator<<(std::ostream& os, const BTree& tree) {
   if (!tree.root_) {
     os << "Tree is empty!";
     return os;
@@ -27,7 +27,7 @@ std::ostream& operator<<(std::ostream& os, const BSTree& tree) {
   return os;
 }
 
-Node* BSTree::copyTree(const Node* root) {
+Node* BTree::copyTree(const Node* root) {
   if (!root) {
     return nullptr;
   }
@@ -37,7 +37,7 @@ Node* BSTree::copyTree(const Node* root) {
   return copy;
 }
 
-int BSTree::getEvenCountRec(const Node* root) {
+int BTree::getEvenCountRec(const Node* root) {
   int result = 0;
   if (!root) {
     return result;
@@ -48,7 +48,7 @@ int BSTree::getEvenCountRec(const Node* root) {
   return result + getEvenCountRec(root->left_) + getEvenCountRec(root->right_);
 }
 
-bool BSTree::isAllPositiveRec(const Node* root) {
+bool BTree::isAllPositiveRec(const Node* root) {
   if (!root) {
     return true;
   }
@@ -59,7 +59,7 @@ bool BSTree::isAllPositiveRec(const Node* root) {
   }
 }
 
-void BSTree::deleteLeavesRec2(Node* root, Node* parent, const bool& left) {
+void BTree::deleteLeavesRec2(Node* root, Node* parent, const bool& left) {
   if (root->left_ != nullptr && root->right_ != nullptr) {
     deleteLeavesRec2(root->left_, root, true);
     deleteLeavesRec2(root->right_, root, false);
@@ -77,7 +77,7 @@ void BSTree::deleteLeavesRec2(Node* root, Node* parent, const bool& left) {
   }
 }
 
-void BSTree::deleteLeavesRec(Node* root) {
+void BTree::deleteLeavesRec(Node* root) {
   if (root->left_ != nullptr && root->right_ != nullptr) {
     deleteLeavesRec2(root->left_, root, true);
     deleteLeavesRec2(root->right_, root, false);
@@ -90,7 +90,7 @@ void BSTree::deleteLeavesRec(Node* root) {
   }
 }
 
-double BSTree::getArifmeticAverageRec(Node* root, double& c) {
+double BTree::getArifmeticAverageRec(Node* root, double& c) {
   if (!root) {
     return 0;
   }
@@ -99,7 +99,7 @@ double BSTree::getArifmeticAverageRec(Node* root, double& c) {
          getArifmeticAverageRec(root->right_, c);
 }
 
-bool BSTree::findElementRec(Node* root, const int& x, std::vector<int>& v) {
+bool BTree::findElementRec(Node* root, const int& x, std::vector<int>& v) {
   if (!root) {
     return false;
   }
@@ -122,7 +122,7 @@ bool BSTree::findElementRec(Node* root, const int& x, std::vector<int>& v) {
   }
 }
 
-bool BSTree::isBSTRec(const Node* root) {
+bool BTree::isBSTRec(const Node* root) {
   if (!root) {
     return true;
   }
@@ -131,7 +131,7 @@ bool BSTree::isBSTRec(const Node* root) {
          isBSTRec(root->left_) && isBSTRec(root->right_);
 }
 
-void BSTree::printByLevelsRec(const Node* root, int tabSize) {
+void BTree::printByLevelsRec(const Node* root, int tabSize) {
   if (!root) {
     return;
   }
@@ -142,35 +142,35 @@ void BSTree::printByLevelsRec(const Node* root, int tabSize) {
   printByLevelsRec(root->left_, tabSize);
 }
 
-BSTree::BSTree() {
+BTree::BTree() {
   root_ = nullptr;
 }
 
-BSTree::BSTree(const BSTree& cp) {
+BTree::BTree(const BTree& cp) {
   root_ = copyTree(cp.root_);
 }
 
-BSTree& BSTree::operator=(const BSTree& cp) {
+BTree& BTree::operator=(const BTree& cp) {
   clear();
   root_ = copyTree(cp.root_);
   return *this;
 }
 
-BSTree::BSTree(BSTree&& mv) {
+BTree::BTree(BTree&& mv) {
   std::swap(root_, mv.root_);
   mv.root_ = nullptr;
 }
 
-BSTree& BSTree::operator=(BSTree&& mv) {
+BTree& BTree::operator=(BTree&& mv) {
   std::swap(root_, mv.root_);
   return *this;
 }
 
-BSTree::~BSTree() {
+BTree::~BTree() {
   clear();
 }
 
-bool BSTree::addElement(const int& x, const std::vector<int>& path) {
+bool BTree::addElement(const int& x, const std::vector<int>& path) {
   if (std::count(path.begin(), path.end(), 0) +
           std::count(path.begin(), path.end(), 1) !=
       path.size()) {
@@ -192,31 +192,31 @@ bool BSTree::addElement(const int& x, const std::vector<int>& path) {
   return true;
 }
 
-int BSTree::getEvenCount() {
+int BTree::getEvenCount() {
   return getEvenCountRec(root_);
 }
 
-bool BSTree::isAllPositive() {
+bool BTree::isAllPositive() {
   return isAllPositiveRec(root_);
 }
 
-void BSTree::clear() {
+void BTree::clear() {
   clearElements(root_);
   root_ = nullptr;
 }
 
-void BSTree::deleteLeaves() {
+void BTree::deleteLeaves() {
   if (!isEmpty()) {
     deleteLeavesRec(root_);
   }
 }
 
-double BSTree::getArifmeticAverage() {
+double BTree::getArifmeticAverage() {
   double count = 0;
   return getArifmeticAverageRec(root_, count) / count;
 }
 
-std::vector<int> BSTree::findElement(const int& x) {
+std::vector<int> BTree::findElement(const int& x) {
   std::vector<int> v;
   if (findElementRec(root_, x, v)) {
     return v;
@@ -227,11 +227,11 @@ std::vector<int> BSTree::findElement(const int& x) {
   }
 }
 
-bool BSTree::isEmpty() const {
+bool BTree::isEmpty() const {
   return root_ == nullptr;
 }
 
-bool BSTree::isBinarySearchTree() {
+bool BTree::isBinarySearchTree() {
   return isBSTRec(root_);
 }
 
@@ -257,7 +257,7 @@ void printTreeByLevels(Node* root) {
   }
 }
 
-void BSTree::printByLevels(bool rotate) {
+void BTree::printByLevels(bool rotate) {
   if (rotate) {
     printByLevelsRec(root_, 4);
   } else {
