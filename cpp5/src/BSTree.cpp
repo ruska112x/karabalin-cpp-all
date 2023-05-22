@@ -27,47 +27,6 @@ std::ostream& operator<<(std::ostream& os, const BSTree& tree) {
   return os;
 }
 
-Node* BSTree::findNode(const Node* root, const int& x) {
-  Node* rt = const_cast<Node*>(root);
-  while (rt) {
-    if (x < rt->data_) {
-      rt = rt->left_;
-    } else if (x > rt->data_) {
-      rt = rt->right_;
-    } else {
-      return rt;
-    }
-  }
-  return nullptr;
-}
-
-Node* BSTree::findNodeRec(const Node* root, const int& x) {
-  if (!root) {
-    return nullptr;
-  }
-  if (x < root->data_) {
-    return findNodeRec(root->left_, x);
-  }
-  if (x > root->data_) {
-    return findNodeRec(root->right_, x);
-  }
-  return const_cast<Node*>(root);
-}
-
-bool BSTree::insertNode(Node*& root, const int& x) {
-  if (!root) {
-    root = new Node(x);
-    return true;
-  }
-  if (x < root->data_) {
-    return insertNode(root->left_, x);
-  }
-  if (x > root->data_) {
-    return insertNode(root->right_, x);
-  }
-  return false;
-}
-
 Node* BSTree::copyTree(const Node* root) {
   if (!root) {
     return nullptr;
@@ -144,15 +103,23 @@ bool BSTree::findElementRec(Node* root, const int& x, std::vector<int>& v) {
   if (!root) {
     return false;
   }
-  if (x < root->data_) {
-    v.push_back(0);
-    return findElementRec(root->left_, x, v);
-  }
-  if (x > root->data_) {
+  if (x == root->data_) {
+    return true;
+  } else {
     v.push_back(1);
-    return findElementRec(root->right_, x, v);
+    if (findElementRec(root->right_, x, v)) {
+      return true;
+    } else {
+      v.pop_back();
+      v.push_back(0);
+      if (findElementRec(root->left_, x, v)) {
+        return true;
+      } else {
+        v.pop_back();
+        return false;
+      }
+    }
   }
-  return true;
 }
 
 bool BSTree::isBSTRec(const Node* root) {

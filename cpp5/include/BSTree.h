@@ -2,8 +2,8 @@
 #define CPP5_BSTREE_H
 
 #include <iostream>
-#include <vector>
 #include <queue>
+#include <vector>
 
 struct Node {
   Node(const int& data = int(), Node* left = nullptr, Node* right = nullptr)
@@ -31,9 +31,6 @@ struct Node {
 
 class BSTree {
   void clearElements(Node*);
-  Node* findNode(const Node*, const int&);
-  Node* findNodeRec(const Node*, const int&);
-  bool insertNode(Node*&, const int&);
   Node* copyTree(const Node*);
   int getEvenCountRec(const Node*);
   bool isAllPositiveRec(const Node*);

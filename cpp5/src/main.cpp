@@ -46,7 +46,7 @@ void filledBSTreeTest0() {
   std::cout << "IsAllPositive: " << tree.isAllPositive() << "\n";
   std::cout << "----------------\n";
   std::cout << "PrintByLevels:\n";
-  tree.printByLevels(false);
+  tree.printByLevels(true);
   std::cout << "----------------\n";
   tree.deleteLeaves();
   std::cout << tree << "\n";
