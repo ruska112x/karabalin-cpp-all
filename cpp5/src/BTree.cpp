@@ -1,6 +1,7 @@
 #include "../include/BTree.h"
 #include <algorithm>
 #include <iostream>
+#include <string>
 #include <utility>
 
 void BTree::clearElements(Node* root) {
@@ -235,17 +236,18 @@ bool BTree::isBinarySearchTree() {
   return isBSTRec(root_);
 }
 
-void printTreeByLevels(Node* root) {
+void printTreeByLevels(Node* root, int tabSize) {
   if (root == nullptr) {
     return;
   }
   std::queue<Node*> levelQueue;
   levelQueue.push(root);
   while (!levelQueue.empty()) {
-    for (int i = 0; i < levelQueue.size(); i++) {
+    int levelSize = levelQueue.size();
+    for (int i = 0; i < levelSize; i++) {
       Node* current = levelQueue.front();
       levelQueue.pop();
-      std::cout << current->data_ << " ";
+      std::cout << std::string(tabSize, ' ') << current->data_;
       if (current->left_) {
         levelQueue.push(current->left_);
       }
@@ -261,6 +263,6 @@ void BTree::printByLevels(bool rotate) {
   if (rotate) {
     printByLevelsRec(root_, 4);
   } else {
-    printTreeByLevels(root_);
+    printTreeByLevels(root_, 4);
   }
 }
