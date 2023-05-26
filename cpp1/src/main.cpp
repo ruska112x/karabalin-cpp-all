@@ -1,5 +1,5 @@
 #include <iostream>
-#include "./include/DynamicIntArray.h"
+#include "../include/DynamicIntArray.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
